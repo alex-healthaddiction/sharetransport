@@ -36,11 +36,6 @@ initializeDb( db => {
 
 	// api router
 	app.use('/api', api({ config, db }));
-
-	const httpsServer = https.createServer({
-		key: privateKey,
-		cert: certificate
-	});
 	app.server.listen(process.env.PORT || config.port, () => {
 		console.log(`Started on port ${app.server.address().port}`);
 	});

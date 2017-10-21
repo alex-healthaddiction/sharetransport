@@ -40,7 +40,7 @@ drivers.get('/:driver', (req, res) => {
 	}
 });
 
-const sampleTrips = {};
+let sampleTrips = {};
 
 let trips = Router();
 trips.get('/', (req, res) => {
