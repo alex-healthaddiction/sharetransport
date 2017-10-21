@@ -23,6 +23,11 @@ app.use(bodyParser.json({
 	limit : config.bodyLimit
 }));
 
+// var fs = require('fs');
+// var https = require('https');
+// var privateKey  = fs.readFileSync('./key.pem', 'utf8');
+// var certificate = fs.readFileSync('./certificate.pem', 'utf8');
+
 // connect to db
 initializeDb( db => {
 
@@ -32,6 +37,10 @@ initializeDb( db => {
 	// api router
 	app.use('/api', api({ config, db }));
 
+	const httpsServer = https.createServer({
+		key: privateKey,
+		cert: certificate
+	});
 	app.server.listen(process.env.PORT || config.port, () => {
 		console.log(`Started on port ${app.server.address().port}`);
 	});
